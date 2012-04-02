@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Shouldly by shouldly</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/shouldly/shouldly">Fork On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/shouldly/shouldly/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/shouldly/shouldly/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Shouldly</h1>
+          <p>Should testing for .net - the way Asserting *Should* be</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/shouldly">shouldly</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>Shouldly</h1>
+
+<h3>How asserting <em>Should</em> be</h3>
+
+<p>This is the old <em>Assert</em> way: </p>
+
+<div class="highlight">
+<pre><span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">contestant</span><span class="p">.</span><span class="n">Points</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">EqualTo</span><span class="p">(</span><span class="m">1337</span><span class="p">));</span>
+</pre>
+</div>
+
+
+<p>For your troubles, you get this message, when it fails:</p>
+
+<pre><code>Expected 1337 but was 0
+</code></pre>
+
+<p>How it <strong>Should</strong> be:</p>
+
+<div class="highlight">
+<pre><span class="n">contestant</span><span class="p">.</span><span class="n">Points</span><span class="p">.</span><span class="n">ShouldBe</span><span class="p">(</span><span class="m">1337</span><span class="p">);</span>
+</pre>
+</div>
+
+
+<p>Which is just syntax, so far, but check out the message when it fails:</p>
+
+<pre><code>contestant.Points should be 1337 but was 0
+</code></pre>
+
+<p>It might be easy to underestimate how useful this is. Another example, side by side:</p>
+
+<div class="highlight">
+<pre>    <span class="n">Assert</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">map</span><span class="p">.</span><span class="n">IndexOf</span><span class="p">(</span><span class="s">"boo"</span><span class="p">));</span>    <span class="c1">// -&gt; Expected 2 but was 1</span>
+    <span class="n">map</span><span class="p">.</span><span class="n">IndexOf</span><span class="p">(</span><span class="s">"boo"</span><span class="p">).</span><span class="n">ShouldBe</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>          <span class="c1">// -&gt; map.IndexOf("boo") </span>
+                                             <span class="c1">//      should be 2 </span>
+                                             <span class="c1">//      but was 1</span>
+</pre>
+</div>
+
+
+<p><strong>Shouldly</strong> uses the variables within the <em>ShouldBe</em> statement to report on errors, which makes diagnosing easier.</p>
+
+<p>Another example, if you compare two collections:</p>
+
+<div class="highlight">
+<pre>    <span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span> <span class="p">}).</span><span class="n">ShouldBe</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">4</span> <span class="p">});</span>
+</pre>
+</div>
+
+
+<p>and it fails because they're different, it'll show you the differences between the two collections:
+        should be
+    [1, 2, 4]
+        but was
+    [1, 2, 3]
+        difference
+    [1, 2, <em>3</em>]</p>
+
+<p>If you want to check that a particular call does/does not throw an exception, it's as simple as:</p>
+
+<div class="highlight">
+<pre>    <span class="n">Should</span><span class="p">.</span><span class="n">Throw</span><span class="p">&lt;</span><span class="n">ArgumentOutOfRangeException</span><span class="p">&gt;(()</span> <span class="p">=&gt;</span> <span class="n">widget</span><span class="p">.</span><span class="n">Twist</span><span class="p">(-</span><span class="m">1</span><span class="p">));</span>
+</pre>
+</div>
+
+
+<p>Then if it chucks a wobbly, you have access to the exception to help debug what the underlying cause was.</p>
+
+<p>Other <em>Shouldly</em> features:</p>
+
+<pre><code>## Equality
+     ShouldBe
+     ShouldNotBe
+     ShouldBeGreaterThan(OrEqualTo)
+     ShouldBeLessThan(OrEqualTo)
+     ShouldBeTypeOf&lt;T&gt;
+
+## Enumerable
+     ShouldBe(with Tolerance)
+     ShouldContain
+     ShouldContain(predicate)
+     ShouldNotContain
+     ShouldNotContain(predicate)
+     ShouldBeEmpty
+     ShouldNotBeEmpty
+
+## String
+     ShouldBeCloseTo
+     ShouldStartWith
+     ShouldEndWith
+     ShouldContain
+     ShouldNotContain
+     ShouldContainWithoutWhitespace
+     ShouldMatch
+
+## Dictionary
+     ShouldContainKeyShouldContainKeyAndValue
+     ShouldNotContainKey
+     ShouldNotContainKeyAndValue
+
+## Exceptions
+     Should.Throw&lt;T&gt;(Action)
+     Should.NotThrow(Action)
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
