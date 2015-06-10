@@ -16,8 +16,7 @@ namespace Shouldly
         {
             return Throw<TException>(actual, () => customMessage);
         }
-
-        public static TException ShouldThrow<TException>(this Action actual, Func<string> customMessage) where TException : Exception
+        public static TException ShouldThrow<TException>(this Action actual, [InstantHandle] Func<string> customMessage) where TException : Exception
         {
             return Throw<TException>(actual, customMessage);
         }
