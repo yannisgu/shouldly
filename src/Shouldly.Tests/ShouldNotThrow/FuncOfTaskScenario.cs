@@ -15,6 +15,7 @@ namespace Shouldly.Tests.ShouldNotThrow
                 TaskScheduler.Default);
 
             task.ShouldNotThrow("Some additional context");
+
         }
 
         protected override string ChuckedAWobblyErrorMessage
